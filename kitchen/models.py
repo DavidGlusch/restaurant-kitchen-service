@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 class DishType(models.Model):
@@ -36,6 +37,10 @@ class Dish(models.Model):
 
 class Cook(AbstractUser):
     years_of_experience = models.IntegerField()
+    REQUIRED_FIELDS = ["years_of_experience"]
+
+    def get_absolute_url(self):
+        return reverse("taxi:cook-detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return str(self.username)
