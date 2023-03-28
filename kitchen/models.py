@@ -13,9 +13,10 @@ class DishType(models.Model):
 class Dish(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    price = models.DecimalField(decimal_places=2)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
     dish_type = models.ForeignKey(
         to=DishType,
+        null=True,
         on_delete=models.SET_NULL,
         related_name="dishes",
     )
