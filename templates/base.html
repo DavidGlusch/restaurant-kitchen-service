@@ -13,12 +13,14 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>Restaurant</title>
 </head>
+
 <body>
 <!-- NavBar  -->
-{% block navbar %}
-  {% include "includes/navbar.html" %}
-{% endblock %}
-
+<nav>
+  {% block navbar %}
+    {% include "includes/navbar.html" %}
+  {% endblock %}
+</nav>
 
     <!-- Title -->
     {% block title %}
@@ -29,6 +31,7 @@
 
     <!-- Content -->
     {% block content %}
+
       <div class="card">
         <div class="card-body">
             <h3 style="text-align:center;">Thanks for landing on this page to know more about PythonGuides.com.</h3>
