@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Restaurant</a>
+        <a class="navbar-brand" href="{% url "kitchen:index" %}">Restaurant</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -7,6 +7,12 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                  <li class="nav-link">Hello, <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
+                  <li class="nav-link"><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+                {% else %}
+                  <li class="nav-link"><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+                {% endif %}
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url "kitchen:index" %}">Home <span class="sr-only">(current)</span></a>
                 </li>
@@ -16,10 +22,10 @@
                         Blogs
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="https://pythonguides.com/django/">Django</a>
-                        <a class="dropdown-item" href="https://pythonguides.com/matplotlib/">Matplotlib</a>
-                        <a class="dropdown-item" href="https://pythonguides.com/turtle/">Turtle</a>
-                        <a class="dropdown-item" href="https://pythonguides.com/tkinter/">Tkinter</a>
+                        <a class="dropdown-item" href="{% url 'kitchen:cook-list' %}">Cooks</a>
+                        <a class="dropdown-item" href="{% url 'kitchen:dish-type-list' %}">Dish Types</a>
+                        <a class="dropdown-item" href="{% url 'kitchen:dish-list' %}">Dishes</a>
+                        <a class="dropdown-item" href="http://127.0.0.1:7000/admin/login/?next=/admin/">Admin</a>
                     </div>
                 </li>
             </ul>
