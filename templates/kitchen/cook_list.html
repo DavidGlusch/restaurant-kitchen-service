@@ -5,14 +5,14 @@
     <h1 style="text-align:center;">
 
       Cook List
-{#      <a href="{% url 'taxi:cook-create' %}" class="btn btn-primary link-to-page">#}
-{#        Create#}
-{#      </a>#}
+      <a href="{% url 'taxi:cook-create' %}" class="btn btn-primary link-to-page">
+        Create
+      </a>
 
     </h1>
     <form action="" method="get" class="form-inline">
 
-{#    {{ search_form|crispy }}#}
+    {{ search_form|crispy }}
     <input type="submit" class="btn btn-secondary" value="Search">
 
     </form>
