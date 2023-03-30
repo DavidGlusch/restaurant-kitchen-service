@@ -29,7 +29,7 @@ class CookCreationForm(UserCreationForm):
 class CookYearsOfExperienceUpdateForm(forms.ModelForm):
     class Meta:
         model = Cook
-        fields = ["years_of_experience"]
+        fields = ["first_name", "last_name", "username", "years_of_experience"]
 
 
 class DishTypeSearchForm(forms.Form):
