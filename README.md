@@ -1,2 +1,2 @@
 # restaurant-kitchen-service
-Very cool web-site 
+Very cool website 
