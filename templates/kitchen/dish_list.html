@@ -1,31 +1,60 @@
-{% extends "base.html" %}
+
+{% extends "base-presentation.html" %}
+
 {% load crispy_forms_filters %}
+
 {% block content %}
-<h1 style="text-align:center;">
 
-    Dish list
+    <h1 style="text-align:center;">
+      Dish List
+    </h1>
 
-  </h1>
-  <form action="" method="get" class="form-inline">
+    <form action="" method="get" class="form-inline">
+      {{ search_form|crispy }}
+        <input type="submit" value="Search" class="btn btn-secondary" >
+    </form>
 
-  {{ search_form|crispy }}
-    <input type="submit" class="btn btn-secondary" value="Search">
+  <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Dish Type</th>
+          <th>
+            <a href="{% url 'kitchen:dish-create' %}" class="btn btn-success link-to-page">
+              Create
+            </a>
+          </th>
+          <th></th>
+        </tr>
+    {% for dish in dish_list %}
+      <tr>
+              <td>
+                  <a href="{% url "kitchen:dish-detail" pk=dish.id %} ">{{ dish.id }}</a>
+              </td>
+              <td>
+                  {{ dish.name }}
+              </td>
+              <td>
+                  {{ dish.price }}
+              </td>
+              <td>
+                  {{ dish.dish_type.name }}
+              </td>
+              <td>
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <a class="btn btn-primary" href="{% url "kitchen:dish-update" pk=dish.id%}" >update</a>
+                </form>
+              </td>
+              <td>
+                  <form action="" method="post">
+                    {% csrf_token %}
+                    <a class="btn btn-danger" href="{% url "kitchen:dish-delete" pk=dish.id%}" >delete</a>
+                  </form>
+                </td>
+          </tr>
+    {% endfor %}
 
-  </form>
-<a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
-      Create
-    </a>
-  {% if dish_list %}
-    <ul>
-      {% for dish in dish_list %}
-        <li>
-          <a href="{% url "kitchen:dish-detail" pk=dish.id %} ">{{ dish.id }}</a>
-          {{ dish.name }} ({{ dish.dish_type.name }})
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>There are no dishes</p>
-  {% endif %}
-
+  </table>
 {% endblock %}

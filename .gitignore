@@ -4,3 +4,5 @@ venv
 db.sqlite3
 kitchen_db_data.json
 .flake8
+navigation.html
+footer.html
