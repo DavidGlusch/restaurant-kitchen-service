@@ -4,7 +4,7 @@ Django project for managing restaurant`s kitchen
 
 ## Have a look!
 
-<link>
+[Restaurant Kitchen project deployed to Render](PASTE_LINK_HERE)
 
 ## Installation 
 
@@ -17,4 +17,5 @@ sourse venv/bin/activate
 pip install -r requirements.txt
 python manage.py runserver
 ```
+## Demo
 ![Homepage](Demo.PNG)
