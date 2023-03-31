@@ -1,4 +1,3 @@
-# restaurant-kitchen-service
 # Restaurant Kitchen Project
 
 Django project for managing restaurant`s kitchen 
