@@ -1,0 +1,63 @@
+{% extends "base-presentation.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <h1 style="text-align:center;">
+
+      Cook List
+
+
+    </h1>
+    <form action="" method="get" class="form-inline">
+
+    {{ search_form|crispy }}
+    <input type="submit" class="btn btn-secondary" value="Search">
+
+    </form>
+
+
+    {% if cook_list %}
+    <table class="table">
+
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Years of Experience</th>
+        <th><a href="{% url 'taxi:cook-create' %}" class="btn btn-success link-to-page">
+        Create
+        </a></th>
+      </tr>
+    {% for cook in cook_list %}
+      <tr>
+
+
+        <td>{{ cook.id }}</td>
+        <td><a href="{{ cook.get_absolute_url }}"> {{ cook.username }} {% if user == cook %} (Me){% endif %}</a> </td>
+        <td>{{ cook.first_name }}</td>
+        <td>{{ cook.last_name }}</td>
+        <td>{{ cook.years_of_experience }}</td>
+        <td>
+          <form action="" method="post">
+          {% csrf_token %}
+          <a class="btn btn-primary" href="{% url "kitchen:cook-update" pk=cook.id%}" >update</a>
+           </form>
+
+        </td>
+      <td>
+          <form action="" method="post">
+          {% csrf_token %}
+          <a class="btn btn-danger" href="{% url "kitchen:cook-delete" pk=cook.id%}" >delete</a>
+           </form>
+
+        </td>
+
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no cooks in the kitchen</p>
+    {% endif %}
+{% endblock %}
