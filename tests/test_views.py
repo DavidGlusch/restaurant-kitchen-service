@@ -37,8 +37,8 @@ class PrivateDishTypeTest(TestCase):
         self.assertTemplateUsed(response, "kitchen/dish_type_list.html")
 
     def test_dish_type_search(self):
-        DishType.objects.create(name="test1")
-        response = self.client.get(DISH_TYPE_URL + "?name=test1")
+        DishType.objects.create(name="test1").filter(name__icontains="t")
+        response = self.client.get(DISH_TYPE_URL + "?name=t")
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "kitchen/dish_type_list.html")
 
@@ -76,8 +76,11 @@ class PrivateDishTests(TestCase):
         self.assertTemplateUsed(response, "kitchen/dish_list.html")
 
     def test_dish_search(self):
-        Dish.objects.create(name="test1", price=5.1)
-        response = self.client.get(DISH_URL + "?name=test1")
+        Dish.objects.create(
+            name="test1",
+            price=5.1
+        ).filter(name__icontains="t")
+        response = self.client.get(DISH_URL + "?name=t")
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "kitchen/dish_list.html")
 
@@ -111,12 +114,12 @@ class PrivateCookTests(TestCase):
         )
         self.assertTemplateUsed(response, "kitchen/cook_list.html")
 
-    def test_Cook_search(self):
+    def test_cook_search(self):
         Cook.objects.create(
             username="user",
             password="test1",
             years_of_experience=5
-        )
-        response = self.client.get(COOK_URL + "?username=user")
+        ).filter(username__icontains="u")
+        response = self.client.get(COOK_URL + "?username=u")
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "kitchen/cook_list.html")
