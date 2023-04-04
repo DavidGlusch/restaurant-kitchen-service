@@ -7,7 +7,7 @@ from django.urls import reverse
 class DishType(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.name)
 
 
@@ -31,7 +31,7 @@ class Dish(models.Model):
         verbose_name_plural = "dishes"
         ordering = ["name"]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.name)
 
 
@@ -45,5 +45,5 @@ class Cook(AbstractUser):
     def get_absolute_url(self):
         return reverse("kitchen:cook-detail", kwargs={"pk": self.pk})
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.username} ({self.first_name} {self.last_name})"
