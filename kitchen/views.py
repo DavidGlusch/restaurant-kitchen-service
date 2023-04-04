@@ -150,6 +150,7 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
     form_class = CookCreationForm
+    success_url = reverse_lazy("taxi:cook-list")
 
 
 class CookYearsOfExperienceUpdateView(LoginRequiredMixin, generic.UpdateView):
