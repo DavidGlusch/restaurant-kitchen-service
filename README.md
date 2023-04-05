@@ -13,6 +13,7 @@ Django project for managing restaurant`s kitchen
 [Restaurant Kitchen project deployed to Render](https://restaurant-kitchen-service-u948.onrender.com)
 
 username:Guest
+
 password:guest13579
 
 ## Installation 
@@ -26,6 +27,7 @@ source venv/bin/activate (on macOS)
 python3 -m venv venv
 sourse venv/bin/activate
 pip install -r requirements.txt
+python manage.py migrate
 python manage.py runserver
 ```
 ## Demo
