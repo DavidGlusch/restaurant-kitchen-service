@@ -1,0 +1,25 @@
+{% extends "base-presentation.html" %}
+
+
+{% block content %}
+  <h4>
+   Dish Type:{{ dishtype.name }}
+  </h4>
+
+    <form action="" style="display: block">
+      <a href="{% url 'taxi:dish-type-delete' pk=dishtype.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+
+    <a href="{% url 'taxi:dish-type-update' pk=dishtype.id %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
+    </form>
+  <h4>Dishes:  </h4>
+
+    <ul>
+        {% for dish in dishtype.dishes.all %}
+            <li>{{ dish.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

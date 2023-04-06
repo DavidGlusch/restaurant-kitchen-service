@@ -55,6 +55,11 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
         return queryset
 
 
+class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
+    model = DishType
+    template_name = "kitchen/dish_type_detail.html"
+
+
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
     template_name = "kitchen/dish_type_form.html"
@@ -117,6 +122,9 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
+    queryset = Dish.objects.select_related("dish_type").prefetch_related(
+        "cooks"
+    )
     model = Dish
 
 
